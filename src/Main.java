@@ -1,19 +1,19 @@
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
-import java.util.Collections;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        Baza obiekt;
-        ArrayList<Baza> lista = new ArrayList<>();
+        Baza obiekt = null;
+        ArrayList<String> lista = new ArrayList<>();
         int numeracja=0;
 
         for (int index = 0; index < 3; index++) {
             System.out.println("Nazwa obiektu");
-        //  String nazwa = scan.nextLine();
             obiekt = new Baza();
-            lista.add(numeracja, obiekt.getNazwa());
+            obiekt.getNazwa();
+            lista.add(numeracja +". "+ obiekt.nazwa);
             numeracja++;
         }
         System.out.println("Obiekty: ");
@@ -21,8 +21,11 @@ public class Main {
         System.out.println(lista.get(0));
         System.out.println(lista.get(1));
         System.out.println(lista.get(2));
+        System.out.println("Wczytaj nazwe obiektu:");
+
 
     }
+
 }
 
 

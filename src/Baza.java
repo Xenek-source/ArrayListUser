@@ -1,9 +1,14 @@
+import java.util.Scanner;
+
 public class Baza {
-   public Baza obiekt;
+   Scanner scan = new Scanner(System.in);
+   public String nazwa;
+
 public Baza (){
-  //  obiekt = nazwa;
 }
-public Baza getNazwa(){
-    return obiekt;
+
+public String getNazwa(){
+    nazwa = scan.nextLine();
+    return nazwa;
 }
 }
