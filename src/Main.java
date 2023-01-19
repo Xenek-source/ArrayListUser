@@ -8,8 +8,8 @@ public class Main {
         PanelControl panel = new PanelControl();
         panel.startPanel();
         panel.startCheck();
+
     }
 
 }
-
 
