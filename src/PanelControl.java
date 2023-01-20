@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class PanelControl {
     Scanner scan = new Scanner(System.in);
     ArrayList<UserManage> userList = new ArrayList<>();
-    String logUser;
+    String logUser,passUser;
 
     public void startPanel(){
         System.out.println("### Witaj w panelu logowania ###");
@@ -31,7 +31,9 @@ public class PanelControl {
         System.out.println("###  Rejestracja konta ###");
         System.out.println("     Wpisz username:");
         String name = scan.nextLine();
-        UserManage user = new UserManage(name);
+        System.out.println("     Wpisz hasło:");
+        String pass = scan.nextLine();
+        UserManage user = new UserManage(name,pass);
         userList.add(user);
         System.out.println("     Konto utworzone.");
         System.out.println("     ####################");
@@ -40,24 +42,29 @@ public class PanelControl {
     }
     public void logOn() {
        if (!userList.isEmpty()) {
-        System.out.println("     Logowanie ##########");
-        System.out.println("     Podaj login: #######");
-        String login = scan.nextLine();
-            if (logUser == null) {
-                for (int i = 0; i < userList.size(); i++) {
-                    if (Objects.equals(login, userList.get(i).name)) {
-                        logUser = userList.get(i).name;
-                        System.out.println(logUser);
-                        account();
-                        break;
-                    } else if (Objects.equals(login, logUser)){
-                        System.out.println("Błędny login.");
-                        logOn();
-                    }
-                }
-            }
-
-        }
+           System.out.println("     Logowanie ##########");
+           System.out.println("     Podaj login: #######");
+           String login = scan.nextLine();
+           if (logUser == null) {
+               for (int i = 0; i < userList.size(); i++) {
+                   if (Objects.equals(login, userList.get(i).name)) {
+                       logUser = userList.get(i).name;
+                       System.out.println(logUser);
+                       System.out.println("     Podaj hasło: #######");
+                           String pass = scan.nextLine();
+                           passUser = userList.get(i).pass;
+                           if (Objects.equals(pass, userList.get(i).pass)) {
+                               account();
+                           } else {
+                               System.out.println("Błędne hasło.");
+                           }
+                   } else if (Objects.equals(login, logUser)) {
+                       System.out.println("Błędny login.");
+                       logOn();
+                   }
+               }
+           }
+       }
         else {
             System.out.println("Brak użytkowników. Utwórz konto.");
             startCheck();
