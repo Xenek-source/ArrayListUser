@@ -39,24 +39,28 @@ public class PanelControl {
         startCheck();
     }
     public void logOn() {
+       if (!userList.isEmpty()) {
         System.out.println("     Logowanie ##########");
         System.out.println("     Podaj login: #######");
         String login = scan.nextLine();
-        if (userList.isEmpty()) {
-            System.out.println("Brak użytkownika. Zaloguj się ponownie.");
-            startCheck();
-        } else {
-            for (int i = 0; i < userList.size(); i++) {
-                if (Objects.equals(login,userList.get(i).name)) {
-                    logUser = userList.get(i).name;
-                    System.out.println(logUser);
-                    account();
-                    break;
-                } else {
-                    System.out.println("Brak użytkownika. Zaloguj się ponownie.");
-                    startCheck();
+            if (logUser == null) {
+                for (int i = 0; i < userList.size(); i++) {
+                    if (Objects.equals(login, userList.get(i).name)) {
+                        logUser = userList.get(i).name;
+                        System.out.println(logUser);
+                        account();
+                        break;
+                    } else if (Objects.equals(login, logUser)){
+                        System.out.println("Błędny login.");
+                        logOn();
+                    }
                 }
             }
+
+        }
+        else {
+            System.out.println("Brak użytkowników. Utwórz konto.");
+            startCheck();
         }
     }
     public void account(){
